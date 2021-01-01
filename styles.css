@@ -1,0 +1,56 @@
+/* Universal styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #700b0b;
+}
+
+/* Playing field */
+
+#field {
+    width: 100%;
+}
+
+#game-area{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 600px;
+    background-color: #595d64;
+    margin-left: -250px;
+    margin-top: -300px;
+    display: grid;
+}
+
+#border {
+    background-color: black;
+}
+
+#background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 520px;
+    height: 620px;
+    background-color: black;
+    margin-left: -260px;
+    margin-top: -310px;
+}
+
+/* Snake */
+
+.snake {
+    background-color: #e7e7e7;
+}
+
+/* Food */
+
+.food {
+    background-color: #2d167e;
+    border-radius: 10px;
+}
