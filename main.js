@@ -203,7 +203,7 @@ function showLevel(){
     // increase speed after certain levels
 function increaseSpeed(){
     let levelDif = foodCounter - oldFoodCount;
-    if (levelDif === 5){
+    if (levelDif == 5){
         snakeSpeed -= 25;
         oldFoodCount = foodCounter;
     }
@@ -214,7 +214,7 @@ function increaseSpeed(){
     // CREATE A LAYOUT with 25 columns and 30 rows (25 * 30) for 500px * 600px field
 const field = makeArea(30, 25);
 
-    // SNAKE LOCATION START LOC
+    // SNAKE START LOC
 const snakeLoc = [{x: 30, y: 13}];
  
     // FOOD START LOCATION and COUNTER (foodCounter = level)
@@ -244,8 +244,6 @@ function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
     
-    increaseSpeed();
-
         // prints snake
     snake();
 
