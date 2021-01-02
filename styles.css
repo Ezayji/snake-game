@@ -20,6 +20,12 @@ body {
     background-color: #700b0b;
 }
 
+p{
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P';
+}
+
 /* Playing field */
 
 #field {
@@ -52,6 +58,8 @@ body {
     margin-left: -260px;
     margin-top: -310px;
 }
+
+/* Score Display */
 
 #display {
     position: fixed;
@@ -86,10 +94,32 @@ button{
     justify-content: space-evenly;
 }
 
-#score p{
-    margin: 0;
-    padding: 0;
-    font-family: 'Press Start 2P';
+/* Creator name display */
+
+#creator{
+    position: fixed;
+    top: 50%;
+    right: 25%;
+    height: 620px;
+    width: 200px;
+    margin-right: -130px;
+    margin-top: -310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#name{
+    height: 100px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#name p{
+    line-height: 1.75;
 }
 
 /* Snake */
