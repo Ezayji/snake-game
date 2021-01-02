@@ -127,47 +127,25 @@ function borderCheck(){
 
     // check if snake tries to eat himself
 function cannibalCheck(){
-    /*
-    let snakeX = snakeLoc.map(a => a.x);
-    let snakeY = snakeLoc.map(a => a.y);
     
-    let snakeBodyX = [];
-    for (let i = 3; i <= snakeX.length; i++){
-        snakeBodyX.push(snakeX[i]);
-    };
-
-    let snakeBodyY = [];
-    for (let i = 3; i <= snakeY.length; i++){
-        snakeBodyY.push(snakeY[i]);
+   if (snakeLoc.length === 1){
+    return; 
     }
 
-    let snakeHeadX = snakeX[0];
-    let snakeHeadY = snakeY[0];
-
-    if (snakeBodyX.includes(snakeHeadX) && snakeBodyY.includes(snakeHeadY)){
-        endGame();
-    }
-    */
-    if (snakeLoc.length === 1){
-        return;
-    }
-
-   const snakeHead = snakeLoc[0];
-   
+   let snakeHead = snakeLoc[0];
    let snakeBody = [];
-   for (let i = 1; i <= snakeLoc.length; i++){
+
+   for (let i = 1; i < snakeLoc.length; i++){
         let bodyPart = snakeLoc[i];
         snakeBody.push(bodyPart);
    }
    
-   
-   for (let i = 0; i <= snakeBody.length - 1; i++){
-       if (snakeHead.x === snakeBody[i].x && snakeHead.y === snakeBody[i].y){
+   for (let i = 1; i <= snakeBody.length - 2; i++){
+       if (snakeBody[i].x === snakeHead.x && snakeBody[i].y === snakeHead.y){
            endGame();
        }
    }
    
-  console.log(snakeBody);
 }
 
     // move snake segments with the snake
