@@ -16,7 +16,7 @@ function makeArea(rows, cols) {
 
 
 
-// CREATE SNAKE
+// PRINT SNAKE
 function snake() {
 
     snakeLoc.forEach(segment => {
@@ -28,7 +28,11 @@ function snake() {
 
 }
 
-
+    // Change snake's head colour
+function snakeHead(){
+    let snake = document.getElementsByClassName("snake");
+    snake[0].style.setProperty('background-color', 'green');
+}
 
 // FOOD
     // CREATE NEW FOOD LOCATION
@@ -196,10 +200,18 @@ function showLevel(){
     box.appendChild(p2);
 }
 
+    // increase speed after certain levels
+function increaseSpeed(){
+    let levelDif = foodCounter - oldFoodCount;
+    if (levelDif === 5){
+        snakeSpeed -= 25;
+        oldFoodCount = foodCounter;
+    }
+}
 
 
 ////
-    // CREATE A LAYOUT with 25 columns and 30 rows (20 * 30) for 500px * 600px field
+    // CREATE A LAYOUT with 25 columns and 30 rows (25 * 30) for 500px * 600px field
 const field = makeArea(30, 25);
 
     // SNAKE LOCATION START LOC
@@ -207,6 +219,7 @@ const snakeLoc = [{x: 30, y: 13}];
  
     // FOOD START LOCATION and COUNTER (foodCounter = level)
 let foodCounter = 0;
+let oldFoodCount = 0;
 let foodLoc = {x: 15, y:13};
 
 document.getElementsByClassName("food")[foodCounter].style.gridRowStart = foodLoc.x;
@@ -222,7 +235,7 @@ const snakeLevelUp = 4;
 let score = 0;
 
     // SNAKE SPEED
-const snakeSpeed = 200;
+let snakeSpeed = 200;
 
 
 
@@ -231,8 +244,13 @@ function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
     
+    increaseSpeed();
+
         // prints snake
     snake();
+
+        // sets the colour for snake's head
+    snakeHead();
 
         // moves all the snake parts in the same path as head 
     moveSnakeParts();
@@ -243,6 +261,7 @@ function gameFrame(){
         // checks food location relative to snake head and adds length if eaten
     checkFood();
 
+        // checks if the snake tries to eat itself
     cannibalCheck();
 
         // listens for keypress
