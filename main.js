@@ -1,5 +1,5 @@
 
-    // gameplay area
+// DEFINE GAMEPLAY AREA
 const area = document.getElementById("game-area");
 
 // CREATE GAMEPLAY AREA grids
@@ -31,7 +31,6 @@ function snake() {
 
 
 // FOOD
-
     // CREATE NEW FOOD LOCATION
 function food(){
 
@@ -73,7 +72,7 @@ function currentFood(){
     foodLoc = {x: x, y: y};
 }
 
-    // Add to snake length / constant *snakeLevelUp* determines levelup size
+    // ADD TO SNAKE LENGTH / constant *snakeLevelUp* determines levelup size
 function addLength(){
     let x = 0;
     let newSegment = {
@@ -99,8 +98,7 @@ function checkFood(){
 
 
 
-// Snake direction 
-
+// SNAKE DIRECTION 
     // updates location in every loop based on movementDir
 function snakeDirection(){
     if(movementDir == "left"){
@@ -169,7 +167,7 @@ function giveDirection(){
 // SCORE AND LEVEL
 function showLevel(){
     let box = document.getElementById("score");
-
+        // make sure score and level is printed once every interval
     box.innerHTML = '';
     
     let p = document.createElement('p');
@@ -198,7 +196,6 @@ let foodLoc = {x: 15, y:13};
 document.getElementsByClassName("food")[foodCounter].style.gridRowStart = foodLoc.x;
 document.getElementsByClassName("food")[foodCounter].style.gridColumnStart = foodLoc.y;
 
-
     // CURRENT MOVEMENT
 let movementDir = "";
 
@@ -213,6 +210,7 @@ const snakeSpeed = 200;
 
 
 
+// ONE GAME INTERVAL
 function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
