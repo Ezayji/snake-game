@@ -92,6 +92,7 @@ function checkFood(){
         addLength();
         food();
         foodCounter += 1;
+        score += snakeLevelUp;
     }
 
 };
@@ -165,6 +166,24 @@ function giveDirection(){
 
 
 
+// SCORE AND LEVEL
+function showLevel(){
+    let box = document.getElementById("score");
+
+    box.innerHTML = '';
+    
+    let p = document.createElement('p');
+    let p2 = document.createElement('p');
+    
+    p.textContent = `Level: ${foodCounter}`;
+    p2.textContent = `Score: ${score}`;
+
+    box.appendChild(p);
+    box.appendChild(p2);
+}
+
+
+
 ////
     // CREATE A LAYOUT with 25 columns and 30 rows (20 * 30) for 500px * 600px field
 const field = makeArea(30, 25);
@@ -185,6 +204,12 @@ let movementDir = "";
 
     // SEGMENTS ADDED WITH LEVELUP
 const snakeLevelUp = 4;
+
+    // SCORE
+let score = 0;
+
+    // SNAKE SPEED
+const snakeSpeed = 200;
 
 
 
@@ -213,10 +238,12 @@ function gameFrame(){
         // checks if snake is within the borders else ends the game
     borderCheck();
 
-    console.log(`Level: ${foodCounter}`);
+        // updates level and score
+    showLevel();
+
 }
 
-const frame = setInterval(gameFrame, 200);
+const frame = setInterval(gameFrame, snakeSpeed);
 
 function endGame(){
     clearTimeout(frame);
