@@ -204,8 +204,12 @@ function showLevel(){
 function increaseSpeed(){
     let levelDif = foodCounter - oldFoodCount;
     if (levelDif == 5){
-        snakeSpeed -= 10;
-        oldFoodCount = foodCounter;  
+        snakeSpeed -= 30;
+        oldFoodCount = foodCounter;
+        console.log(levelDif);
+        console.log(snakeSpeed);
+        frame = clearTimeout(frame);
+        frame = setInterval(gameFrame, snakeSpeed);
     }
 }
 
@@ -218,26 +222,23 @@ function increaseSpeed(){
 function pauseGame(){
     pauseBut.style.setProperty('display', 'none');
     resumeBut.style.setProperty('display', 'initial');
-    //clearTimeout(frame);
+    frame = clearTimeout(frame);
 }
 
 function continueGame(){
     resumeBut.style.setProperty('display', 'none');
     pauseBut.style.setProperty('display', 'initial');
-    //setInterval(gameFrame, snakeSpeed);
+    frame = setInterval(gameFrame, snakeSpeed);
 }
 
-function gameStatus(){
-    pauseBut.onclick = pauseGame;
-    resumeBut.onclick = continueGame;
-}
+
 
 ////
     // CREATE A LAYOUT with 25 columns and 30 rows (25 * 30) for 500px * 600px field
 const field = makeArea(30, 25);
 
     // SNAKE START LOC
-const snakeLoc = [{x: 30, y: 13}];
+let snakeLoc = [{x: 30, y: 13}];
  
     // FOOD START LOCATION and COUNTER (foodCounter = level)
 let foodCounter = 0;
@@ -251,7 +252,7 @@ document.getElementsByClassName("food")[foodCounter].style.gridColumnStart = foo
 let movementDir = "";
 
     // SEGMENTS ADDED WITH LEVELUP
-const snakeLevelUp = 4;
+const snakeLevelUp = 2;
 
     // SCORE
 let score = 0;
@@ -266,9 +267,8 @@ function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
     
-    //increaseSpeed();
+    increaseSpeed();
 
-    gameStatus();
         // prints snake
     snake();
 
@@ -298,14 +298,40 @@ function gameFrame(){
 
         // updates level and score
     showLevel();
-
 }
 
-const frame = setInterval(gameFrame, snakeSpeed);
+
+let frame = setInterval(gameFrame, snakeSpeed);
 
 function endGame(){
     clearTimeout(frame);
+    snakeLoc = [{x: 30, y: 13}];
+    foodCounter = 0;
+    foodCounter = 0;
+    oldFoodCount = 0;
+    foodLoc = {x: 15, y:13};
+    movementDir = "";
+    score = 0;
+    snakeSpeed = 200;
+    frame = setInterval(gameFrame, snakeSpeed);
 }
 
+pauseBut.onclick = pauseGame;
+resumeBut.onclick = continueGame;
 
+/*
+let lastRenderTime = 0;
+const SNAKE_SPEED = 5;
 
+function main(currentTime){
+    window.requestAnimationFrame(main);
+    const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
+    if(secondsSinceLastRender < 1 / SNAKE_SPEED) return;
+
+    lastRenderTime = currentTime;
+
+    gameFrame();
+}
+
+window.requestAnimationFrame(main);
+*/
