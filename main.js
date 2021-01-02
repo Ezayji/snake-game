@@ -204,10 +204,14 @@ function showLevel(){
 function increaseSpeed(){
     let levelDif = foodCounter - oldFoodCount;
     if (levelDif == 5){
-        snakeSpeed -= 25;
-        oldFoodCount = foodCounter;
+        snakeSpeed -= 10;
+        oldFoodCount = foodCounter;  
     }
 }
+
+
+
+// PAUSE and RESUME
 
 
 ////
@@ -244,6 +248,8 @@ function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
     
+    //increaseSpeed();
+
         // prints snake
     snake();
 
@@ -280,4 +286,12 @@ const frame = setInterval(gameFrame, snakeSpeed);
 
 function endGame(){
     clearTimeout(frame);
+}
+
+function pauseGame(){
+    clearTimeout(frame);
+}
+
+function continueGame(){
+    frame;
 }

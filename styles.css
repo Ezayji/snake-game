@@ -129,7 +129,7 @@ button{
     background-color: #e7e7e7;
     border-radius: 5px;
     z-index: 2;
-    border: 2px solid #400ff3
+    border: 2px solid #4d1cfc;
 }
 
 /* Food */
@@ -138,5 +138,5 @@ button{
     background-color: #2d167e;
     border-radius: 10px;
     z-index: 1;
-    border: 2px solid #400ff3;
+    border: 2px solid #4d1cfc;
 }
