@@ -212,7 +212,25 @@ function increaseSpeed(){
 
 
 // PAUSE and RESUME
+    const pauseBut = document.getElementById('pause');
+    const resumeBut = document.getElementById('resume');
 
+function pauseGame(){
+    pauseBut.style.setProperty('display', 'none');
+    resumeBut.style.setProperty('display', 'initial');
+    //clearTimeout(frame);
+}
+
+function continueGame(){
+    resumeBut.style.setProperty('display', 'none');
+    pauseBut.style.setProperty('display', 'initial');
+    //setInterval(gameFrame, snakeSpeed);
+}
+
+function gameStatus(){
+    pauseBut.onclick = pauseGame;
+    resumeBut.onclick = continueGame;
+}
 
 ////
     // CREATE A LAYOUT with 25 columns and 30 rows (25 * 30) for 500px * 600px field
@@ -250,6 +268,7 @@ function gameFrame(){
     
     //increaseSpeed();
 
+    gameStatus();
         // prints snake
     snake();
 
@@ -288,10 +307,5 @@ function endGame(){
     clearTimeout(frame);
 }
 
-function pauseGame(){
-    clearTimeout(frame);
-}
 
-function continueGame(){
-    frame;
-}
+
