@@ -126,6 +126,13 @@ function borderCheck(){
     }
 }
 
+    // check if snake tries to eat himself
+function cannibalCheck(){
+    let snakeX = snakeLoc.map(a => a.x);
+    let snakeY = snakeLoc.map(a => a.y);
+    
+}
+
     // move snake segments with the snake
 function moveSnakeParts(){
     for (let i = snakeLoc.length - 2; i >= 0; i--){
@@ -208,8 +215,6 @@ function gameFrame(){
 
     console.log(`Level: ${foodCounter}`);
 }
-
-//gameFrame();
 
 const frame = setInterval(gameFrame, 200);
 
