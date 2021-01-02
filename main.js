@@ -40,15 +40,15 @@ function food(){
     let usedY = snakeLoc.map(a => a.y);
 
     let availableX = [];
-    for (let i = 0; i < field.rows; i++){
-        if(!usedX.includes(i)){
+    for (let i = 0; i <= field.rows - 1; i++){
+        if(!usedX.includes(i) && i > 0 && i < field.rows){
             availableX.push(i);
         }
     };
 
     let availableY = [];
-    for (let i = 0; i < field.cols; i++){
-        if(!usedY.includes(i)){
+    for (let i = 0; i <= field.cols - 1; i++){
+        if(!usedY.includes(i) && i > 0 && i < field.cols){
             availableY.push(i);
         }
     };
@@ -76,8 +76,8 @@ function currentFood(){
 function addLength(){
     let x = 0;
     let newSegment = {
-        x: snakeLoc[0].x,
-        y: snakeLoc[0].y
+        x: -1,//snakeLoc[0].x,
+        y: -1//snakeLoc[0].y
     };
     while(x < snakeLevelUp){
         snakeLoc.push(newSegment);
@@ -91,7 +91,7 @@ function checkFood(){
         addLength();
         food();
         foodCounter += 1;
-        score += snakeLevelUp;
+        score += snakeLevelUp * 10;
     }
 
 };
@@ -127,9 +127,47 @@ function borderCheck(){
 
     // check if snake tries to eat himself
 function cannibalCheck(){
+    /*
     let snakeX = snakeLoc.map(a => a.x);
     let snakeY = snakeLoc.map(a => a.y);
     
+    let snakeBodyX = [];
+    for (let i = 3; i <= snakeX.length; i++){
+        snakeBodyX.push(snakeX[i]);
+    };
+
+    let snakeBodyY = [];
+    for (let i = 3; i <= snakeY.length; i++){
+        snakeBodyY.push(snakeY[i]);
+    }
+
+    let snakeHeadX = snakeX[0];
+    let snakeHeadY = snakeY[0];
+
+    if (snakeBodyX.includes(snakeHeadX) && snakeBodyY.includes(snakeHeadY)){
+        endGame();
+    }
+    */
+    if (snakeLoc.length === 1){
+        return;
+    }
+
+   const snakeHead = snakeLoc[0];
+   
+   let snakeBody = [];
+   for (let i = 1; i <= snakeLoc.length; i++){
+        let bodyPart = snakeLoc[i];
+        snakeBody.push(bodyPart);
+   }
+   
+   
+   for (let i = 0; i <= snakeBody.length - 1; i++){
+       if (snakeHead.x === snakeBody[i].x && snakeHead.y === snakeBody[i].y){
+           endGame();
+       }
+   }
+   
+  console.log(snakeBody);
 }
 
     // move snake segments with the snake
@@ -173,8 +211,8 @@ function showLevel(){
     let p = document.createElement('p');
     let p2 = document.createElement('p');
     
-    p.textContent = `Level: ${foodCounter}`;
-    p2.textContent = `Score: ${score}`;
+    p.textContent = `Level:${foodCounter}`;
+    p2.textContent = `Score:${score}`;
 
     box.appendChild(p);
     box.appendChild(p2);
@@ -226,6 +264,8 @@ function gameFrame(){
 
         // checks food location relative to snake head and adds length if eaten
     checkFood();
+
+    cannibalCheck();
 
         // listens for keypress
     giveDirection();

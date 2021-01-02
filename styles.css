@@ -54,9 +54,10 @@ p{
     left: 50%;
     width: 520px;
     height: 620px;
-    background-color: black;
     margin-left: -260px;
     margin-top: -310px;
+    border: 10px solid black;
+    z-index: 3;
 }
 
 /* Score Display */
