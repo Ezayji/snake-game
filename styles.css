@@ -89,18 +89,33 @@ p{
     display: none;
 }
 
-#score {
+#score, #best{
     height: 100px;
     width: 200px;
-    border: 5px solid black;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    display: none;
+    /*
     color: black;
+    border: 5px solid black;
+    */
+    background-color: #2d167e;
+    color: #e7e7e7;
+    border: 5px solid #4d1cfc;
+    
 }
 
+#score {
+    display: none;
+}
+
+/* top score */
+
+#best{ 
+    margin-bottom: 20px;
+    display: none;
+}
 /* Creator name display */
 
 #creator{

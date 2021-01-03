@@ -100,6 +100,21 @@ function checkFood(){
 
 };
 
+    // Checks for how long food has been uneaten
+function foodLife(){
+    if(snakeSpeed >= 170){
+
+    } else if (snakeSpeed = 140){
+
+    } else if (snakeSpeed = 120){
+
+    } else if (snakeSpeed = 100){
+
+    } else if (snakeSpeed = 90){
+
+    }
+}
+
 
 
 // SNAKE DIRECTION 
@@ -203,8 +218,22 @@ function showLevel(){
     // increase speed after certain levels
 function increaseSpeed(){
     let levelDif = foodCounter - oldFoodCount;
-    if (levelDif == 5){
+    if (levelDif == 5 && snakeSpeed > 140){
         snakeSpeed -= 30;
+        oldFoodCount = foodCounter;
+        console.log(levelDif);
+        console.log(snakeSpeed);
+        frame = clearTimeout(frame);
+        frame = setInterval(gameFrame, snakeSpeed);
+    } else if (levelDif == 5 && snakeSpeed == 140){
+        snakeSpeed -= 20;
+        oldFoodCount = foodCounter;
+        console.log(levelDif);
+        console.log(snakeSpeed);
+        frame = clearTimeout(frame);
+        frame = setInterval(gameFrame, snakeSpeed);
+    } else if (levelDif == 5 && snakeSpeed <= 100){
+        snakeSpeed -= 10;
         oldFoodCount = foodCounter;
         console.log(levelDif);
         console.log(snakeSpeed);
@@ -213,6 +242,26 @@ function increaseSpeed(){
     }
 }
 
+    // high score table
+function highScore(){
+    if (score > high){
+        high = score;
+    } else {
+        return;
+    }
+    let highScore = document.getElementById("best");
+    highScore.style.setProperty('display', 'flex');
+    highScore.innerHTML = '';
+
+    let p = document.createElement('p');
+    let p2 = document.createElement('p');
+
+    p.textContent = "High score:";
+    p2.textContent = `${high}`;
+
+    highScore.appendChild(p);
+    highScore.appendChild(p2);
+}
 
 
 // PAUSE and RESUME
@@ -250,6 +299,7 @@ function beginGame(){
 // END THE GAME IF LOSE
 function endGame(){
     clearTimeout(frame);
+    highScore();
     snakeLoc = [{x: 30, y: 13}];
     foodCounter = 0;
     foodCounter = 0;
@@ -287,8 +337,14 @@ const snakeLevelUp = 2;
     // SCORE
 let score = 0;
 
+    // HOLD HIGH SCORE
+let high = 0;
+
     // SNAKE SPEED
 let snakeSpeed = 200;
+
+    // FOOD UNEATEN TIME
+let foodLive = 0;
 
 
 
@@ -296,7 +352,8 @@ let snakeSpeed = 200;
 function gameFrame(){
         // makes sure only neccessary divs are printed
     area.innerHTML = '';
-    
+
+        // increases speed after certain levels
     increaseSpeed();
 
         // prints snake
