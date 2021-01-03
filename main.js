@@ -42,7 +42,7 @@ function food(){
 
     let usedX = snakeLoc.map(a => a.x);
     let usedY = snakeLoc.map(a => a.y);
-
+/*
     let availableX = [];
     for (let i = 0; i <= field.rows - 1; i++){
         if(!usedX.includes(i) && i > 0 && i < field.rows){
@@ -63,8 +63,47 @@ function food(){
 
     console.log(x);
     console.log(y);
-    
-    foodLoc = {x: x, y: y};
+*/
+    let snake = [];
+    for(i = 0; i < usedX.length; i++){
+        let segment = [];
+        segment.push(usedX[i]);
+        segment.push(usedY[i]);
+        snake.push(segment);
+    }
+
+    let x = Math.floor((Math.random * field.rows) + 1);
+    let y = Math.floor((Math.random * field.cols) + 1);
+
+    let acceptValues = false;
+
+    let values = [x, y];
+    while(!acceptValues){
+        let booleans = [];
+        for (i = 0; i < snake.length; i++){
+            if(JSON.stringify(values) == JSON.stringify(snake[i])){
+                booleans.push(true);
+            } else {
+                booleans.push(false);
+            }
+        }
+
+        if(!booleans.includes(true)){
+            foodLoc = {x: values[0], y: values[1]};
+            acceptValues = true;
+        } else {
+            x = Math.floor((Math.random * field.rows) + 1);
+            y = Math.floor((Math.random * field.cols) + 1);
+            values = [x, y];
+        }
+    }
+    return foodLoc;
+/*
+    while(!acceptValues){
+        
+    }
+*/
+    //foodLoc = {x: x, y: y};
 }
 
     // PRINT FOOD
