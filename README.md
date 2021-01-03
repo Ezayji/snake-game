@@ -36,4 +36,4 @@ For local hosting:
 > styles.css
 * Run "index.html" locally with your browser (preferably the latest version of Google Chrome).
 
-**For live version visit:** 
+**For live version visit: [Snake Game](https://ezayji.github.io/snake-game/)** 
