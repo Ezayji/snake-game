@@ -75,13 +75,17 @@ p{
     justify-content: center;
 }
 
-button{
+#display button{
     margin-top: 20px;
     padding: 10px 0;
     font-family: 'Press Start 2P';
 }
 
 #resume {
+    display: none;
+}
+
+#pause {
     display: none;
 }
 
@@ -123,6 +127,46 @@ button{
     line-height: 1.75;
 }
 
+/* Welcome Display */
+
+#welcome {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    background-color: #2d167e;
+    margin-left: -150px;
+    margin-top: -200px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #e7e7e7;
+    border: 5px solid #4d1cfc;
+    box-shadow: 5px 5px 5px  #2d167e;
+}
+
+#welcome p{
+    line-height: 1.75;
+}
+
+#welcome button{
+    margin-top: 30px;
+    padding: 10px 0;
+    font-family: 'Press Start 2P';
+    width: 110px;
+}
+
+#welcome h1{
+    font-size: 20px;
+    font-family: 'Press Start 2P';
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 30px;
+}
 /* Snake */
 
 .snake {

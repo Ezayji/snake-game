@@ -300,8 +300,19 @@ function gameFrame(){
     showLevel();
 }
 
+let frame;
+//let frame = setInterval(gameFrame, snakeSpeed);
+let startBut = document.getElementById("start");
 
-let frame = setInterval(gameFrame, snakeSpeed);
+function beginGame(){
+    let welcomePage = document.getElementById("welcome");
+    welcomePage.style.setProperty('display', 'none');
+    pauseBut.style.setProperty('display', 'initial');
+    frame = setInterval(gameFrame, snakeSpeed);
+}
+
+startBut.onclick = beginGame;
+
 
 function endGame(){
     clearTimeout(frame);
@@ -319,19 +330,3 @@ function endGame(){
 pauseBut.onclick = pauseGame;
 resumeBut.onclick = continueGame;
 
-/*
-let lastRenderTime = 0;
-const SNAKE_SPEED = 5;
-
-function main(currentTime){
-    window.requestAnimationFrame(main);
-    const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-    if(secondsSinceLastRender < 1 / SNAKE_SPEED) return;
-
-    lastRenderTime = currentTime;
-
-    gameFrame();
-}
-
-window.requestAnimationFrame(main);
-*/
