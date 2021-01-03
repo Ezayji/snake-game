@@ -91,10 +91,15 @@ function addLength(){
 
     // Checks food location relative to snakes head and adds length to snake
 function checkFood(){
-    if (snakeLoc[0].x == foodLoc.x && snakeLoc[0].y == foodLoc.y){
+    function upgrade(){
         addLength();
         food();
         foodCounter += 1;
+        foodLive = 0;
+    }
+
+    if (snakeLoc[0].x == foodLoc.x && snakeLoc[0].y == foodLoc.y){
+        upgrade();
         score += snakeLevelUp * 10;
     }
 
@@ -102,16 +107,11 @@ function checkFood(){
 
     // Checks for how long food has been uneaten
 function foodLife(){
-    if(snakeSpeed >= 170){
-
-    } else if (snakeSpeed = 140){
-
-    } else if (snakeSpeed = 120){
-
-    } else if (snakeSpeed = 100){
-
-    } else if (snakeSpeed = 90){
-
+    let varToAdd = snakeSpeed / 1000;
+    foodLive += varToAdd;
+    if(foodLive > 20){
+        food();
+        foodLive = 0;
     }
 }
 
@@ -208,38 +208,35 @@ function showLevel(){
     let p = document.createElement('p');
     let p2 = document.createElement('p');
     
-    p.textContent = `Level:${foodCounter}`;
+    p.textContent = `Level:${level}`;
     p2.textContent = `Score:${score}`;
 
     box.appendChild(p);
     box.appendChild(p2);
 }
 
-    // increase speed after certain levels
+    // increase speed and level after certain times the treat is eaten
 function increaseSpeed(){
     let levelDif = foodCounter - oldFoodCount;
-    if (levelDif == 5 && snakeSpeed > 140){
-        snakeSpeed -= 30;
+    function increase(){
         oldFoodCount = foodCounter;
-        console.log(levelDif);
+        level += 1;
         console.log(snakeSpeed);
+        console.log(levelDif);
         frame = clearTimeout(frame);
         frame = setInterval(gameFrame, snakeSpeed);
-    } else if (levelDif == 5 && snakeSpeed == 140){
+    };
+    
+    if (levelDif == 5 && snakeSpeed > 160){
         snakeSpeed -= 20;
-        oldFoodCount = foodCounter;
-        console.log(levelDif);
-        console.log(snakeSpeed);
-        frame = clearTimeout(frame);
-        frame = setInterval(gameFrame, snakeSpeed);
+        increase();
+    } else if (levelDif == 5 && snakeSpeed <= 160){
+        snakeSpeed -= 15;
+        increase();
     } else if (levelDif == 5 && snakeSpeed <= 100){
         snakeSpeed -= 10;
-        oldFoodCount = foodCounter;
-        console.log(levelDif);
-        console.log(snakeSpeed);
-        frame = clearTimeout(frame);
-        frame = setInterval(gameFrame, snakeSpeed);
-    }
+        increase();
+    };
 }
 
     // high score table
@@ -302,7 +299,7 @@ function endGame(){
     highScore();
     snakeLoc = [{x: 30, y: 13}];
     foodCounter = 0;
-    foodCounter = 0;
+    level = 0;
     oldFoodCount = 0;
     foodLoc = {x: 15, y:13};
     movementDir = "";
@@ -320,7 +317,7 @@ const field = makeArea(30, 25);
     // SNAKE START LOC
 let snakeLoc = [{x: 30, y: 13}];
  
-    // FOOD START LOCATION and COUNTER (foodCounter = level)
+    // FOOD START LOCATION and COUNTER
 let foodCounter = 0;
 let oldFoodCount = 0;
 let foodLoc = {x: 15, y:13};
@@ -336,6 +333,9 @@ const snakeLevelUp = 2;
 
     // SCORE
 let score = 0;
+
+    // LEVEL
+let level = 0;
 
     // HOLD HIGH SCORE
 let high = 0;
@@ -385,6 +385,9 @@ function gameFrame(){
 
         // updates level and score
     showLevel();
+
+        // Checks for how long food has been uneaten
+    foodLife();
 }
 
 
