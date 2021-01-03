@@ -97,6 +97,8 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    display: none;
+    color: black;
 }
 
 /* Creator name display */

@@ -233,6 +233,36 @@ function continueGame(){
 
 
 
+// BEGIN THE GAME 
+let startBut = document.getElementById("start");
+
+function beginGame(){
+    let welcomePage = document.getElementById("welcome");
+    let scoreBoard = document.getElementById("score");
+    welcomePage.style.setProperty('display', 'none');
+    pauseBut.style.setProperty('display', 'initial');
+    scoreBoard.style.setProperty('display', 'flex');
+    frame = setInterval(gameFrame, snakeSpeed);
+}
+
+
+
+// END THE GAME IF LOSE
+function endGame(){
+    clearTimeout(frame);
+    snakeLoc = [{x: 30, y: 13}];
+    foodCounter = 0;
+    foodCounter = 0;
+    oldFoodCount = 0;
+    foodLoc = {x: 15, y:13};
+    movementDir = "";
+    score = 0;
+    snakeSpeed = 200;
+    frame = setInterval(gameFrame, snakeSpeed);
+}
+
+
+
 ////
     // CREATE A LAYOUT with 25 columns and 30 rows (25 * 30) for 500px * 600px field
 const field = makeArea(30, 25);
@@ -300,33 +330,11 @@ function gameFrame(){
     showLevel();
 }
 
-let frame;
-//let frame = setInterval(gameFrame, snakeSpeed);
-let startBut = document.getElementById("start");
 
-function beginGame(){
-    let welcomePage = document.getElementById("welcome");
-    welcomePage.style.setProperty('display', 'none');
-    pauseBut.style.setProperty('display', 'initial');
-    frame = setInterval(gameFrame, snakeSpeed);
-}
+
+let frame;
 
 startBut.onclick = beginGame;
-
-
-function endGame(){
-    clearTimeout(frame);
-    snakeLoc = [{x: 30, y: 13}];
-    foodCounter = 0;
-    foodCounter = 0;
-    oldFoodCount = 0;
-    foodLoc = {x: 15, y:13};
-    movementDir = "";
-    score = 0;
-    snakeSpeed = 200;
-    frame = setInterval(gameFrame, snakeSpeed);
-}
-
 pauseBut.onclick = pauseGame;
 resumeBut.onclick = continueGame;
 
