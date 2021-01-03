@@ -103,8 +103,8 @@ function currentFood(){
 function addLength(){
     let x = 0;
     let newSegment = {
-        x: -1,//snakeLoc[0].x,
-        y: -1//snakeLoc[0].y
+        x: -1,
+        y: -1
     };
     while(x < snakeLevelUp){
         snakeLoc.push(newSegment);
