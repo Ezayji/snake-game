@@ -56,10 +56,14 @@ function food(){
             availableY.push(i);
         }
     };
-
+    console.log(availableX);
+    console.log(availableY);
     x = availableX[Math.floor(Math.random() * availableX.length)];
     y = availableY[Math.floor(Math.random() * availableY.length)];
 
+    console.log(x);
+    console.log(y);
+    
     foodLoc = {x: x, y: y};
 }
 
@@ -96,12 +100,13 @@ function checkFood(){
         food();
         foodCounter += 1;
         foodLive = 0;
+        treatsLeft -= 1;
     }
 
     if (snakeLoc[0].x == foodLoc.x && snakeLoc[0].y == foodLoc.y){
         upgrade();
-        score += snakeLevelUp * 10;
-    }
+        score += snakeLevelUp * level * 10;
+    } 
 
 };
 
@@ -221,6 +226,7 @@ function increaseSpeed(){
     function increase(){
         oldFoodCount = foodCounter;
         level += 1;
+        treatsLeft = 5;
         console.log(snakeSpeed);
         console.log(levelDif);
         frame = clearTimeout(frame);
@@ -260,6 +266,28 @@ function highScore(){
     highScore.appendChild(p2);
 }
 
+    // treats left table
+function treatsTable(){
+    let box = document.getElementById("treats-left");
+    box.innerHTML = '';
+
+    let p = document.createElement('p');
+    let p2 = document.createElement('p');
+    let p3 = document.createElement('p');
+    let p4 = document.createElement('p');
+
+    p.textContent = "Treats";
+    p2.textContent = "until";
+    p3.textContent = "level up:";
+    p4.textContent = `${treatsLeft}`;
+
+    box.appendChild(p);
+    box.appendChild(p2);
+    box.appendChild(p3);
+    box.appendChild(p4);
+}
+
+
 
 // PAUSE and RESUME
     const pauseBut = document.getElementById('pause');
@@ -285,9 +313,11 @@ let startBut = document.getElementById("start");
 function beginGame(){
     let welcomePage = document.getElementById("welcome");
     let scoreBoard = document.getElementById("score");
+    let foodBoard = document.getElementById("treats-left");
     welcomePage.style.setProperty('display', 'none');
     pauseBut.style.setProperty('display', 'initial');
     scoreBoard.style.setProperty('display', 'flex');
+    foodBoard.style.setProperty('display', 'flex');
     frame = setInterval(gameFrame, snakeSpeed);
 }
 
@@ -299,8 +329,9 @@ function endGame(){
     highScore();
     snakeLoc = [{x: 30, y: 13}];
     foodCounter = 0;
-    level = 0;
+    level = 1;
     oldFoodCount = 0;
+    treatsLeft = 5;
     foodLoc = {x: 15, y:13};
     movementDir = "";
     score = 0;
@@ -320,6 +351,7 @@ let snakeLoc = [{x: 30, y: 13}];
     // FOOD START LOCATION and COUNTER
 let foodCounter = 0;
 let oldFoodCount = 0;
+let treatsLeft = 5;
 let foodLoc = {x: 15, y:13};
 
 document.getElementsByClassName("food")[foodCounter].style.gridRowStart = foodLoc.x;
@@ -335,7 +367,7 @@ const snakeLevelUp = 2;
 let score = 0;
 
     // LEVEL
-let level = 0;
+let level = 1;
 
     // HOLD HIGH SCORE
 let high = 0;
@@ -388,6 +420,9 @@ function gameFrame(){
 
         // Checks for how long food has been uneaten
     foodLife();
+
+        // updates treats left table
+    treatsTable();
 }
 
 

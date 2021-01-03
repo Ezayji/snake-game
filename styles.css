@@ -89,21 +89,33 @@ p{
     display: none;
 }
 
-#score, #best{
-    height: 100px;
-    width: 200px;
+#score, #best, #treats-left{
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    color: #e7e7e7;
+}
+
+#score, #best{
+    height: 100px;
+    width: 200px;
     /*
     color: black;
     border: 5px solid black;
     */
     background-color: #2d167e;
-    color: #e7e7e7;
     border: 5px solid #4d1cfc;
     
+}
+
+#treats-left{
+    height: 140px;
+    width: 200px;
+    margin-bottom: 20px;
+    background-color: #4419df;
+    border: 5px solid #2d167e;
+    display: none;
 }
 
 #score {
