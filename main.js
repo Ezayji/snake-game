@@ -42,28 +42,7 @@ function food(){
 
     let usedX = snakeLoc.map(a => a.x);
     let usedY = snakeLoc.map(a => a.y);
-/*
-    let availableX = [];
-    for (let i = 0; i <= field.rows - 1; i++){
-        if(!usedX.includes(i) && i > 0 && i < field.rows){
-            availableX.push(i);
-        }
-    };
 
-    let availableY = [];
-    for (let i = 0; i <= field.cols - 1; i++){
-        if(!usedY.includes(i) && i > 0 && i < field.cols){
-            availableY.push(i);
-        }
-    };
-    console.log(availableX);
-    console.log(availableY);
-    x = availableX[Math.floor(Math.random() * availableX.length)];
-    y = availableY[Math.floor(Math.random() * availableY.length)];
-
-    console.log(x);
-    console.log(y);
-*/
     let snake = [];
     for(i = 0; i < usedX.length; i++){
         let segment = [];
@@ -72,12 +51,15 @@ function food(){
         snake.push(segment);
     }
 
-    let x = Math.floor((Math.random * field.rows) + 1);
-    let y = Math.floor((Math.random * field.cols) + 1);
+    let x = Math.floor((Math.random() * field.rows) + 1);
+    let y = Math.floor((Math.random() * field.cols) + 1);
 
     let acceptValues = false;
 
-    let values = [x, y];
+    let values = [];
+    values.push(x);
+    values.push(y);
+    console.log(values);
     while(!acceptValues){
         let booleans = [];
         for (i = 0; i < snake.length; i++){
@@ -88,22 +70,20 @@ function food(){
             }
         }
 
-        if(!booleans.includes(true)){
-            foodLoc = {x: values[0], y: values[1]};
+        if(booleans.includes(true) === false){
             acceptValues = true;
         } else {
-            x = Math.floor((Math.random * field.rows) + 1);
-            y = Math.floor((Math.random * field.cols) + 1);
-            values = [x, y];
+            x = Math.floor((Math.random() * field.rows) + 1);
+            y = Math.floor((Math.random() * field.cols) + 1);
+            values.push(x);
+            values.push(y);
         }
     }
-    return foodLoc;
-/*
-    while(!acceptValues){
-        
+
+    
+    if (acceptValues = true){
+        foodLoc = {x: x, y: y};
     }
-*/
-    //foodLoc = {x: x, y: y};
 }
 
     // PRINT FOOD
