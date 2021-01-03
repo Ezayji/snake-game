@@ -59,7 +59,7 @@ function food(){
     let values = [];
     values.push(x);
     values.push(y);
-    console.log(values);
+
     while(!acceptValues){
         let booleans = [];
         for (i = 0; i < snake.length; i++){
