@@ -183,11 +183,18 @@ p{
     line-height: 1.75;
 }
 
-#welcome button, #endgame button{
+#welcome button{
     margin-top: 30px;
+}
+
+#welcome button, #endgame button{
     padding: 10px 0;
     font-family: 'Press Start 2P';
     width: 110px;
+}
+
+#welcome h1{
+    margin-bottom: 30px;
 }
 
 #welcome h1, #endgame h1{
@@ -195,7 +202,6 @@ p{
     font-family: 'Press Start 2P';
     font-weight: normal;
     margin: 0;
-    margin-bottom: 30px;
 }
 
 /* ENDGAME display */
@@ -203,12 +209,21 @@ p{
 #endgame{
     z-index: 5;
     display: none;
-    background-color: #090a0c
+    background-color: #090a0c;
 }
 
 #endgame p{
     line-height: 2.5;
     font-size: 18px;
+}
+
+#endgame h1{
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+#endgame button{
+    margin-top: 20px;
 }
 
 /* Snake */

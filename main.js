@@ -43,6 +43,7 @@ function food(){
     let usedX = snakeLoc.map(a => a.x);
     let usedY = snakeLoc.map(a => a.y);
 
+    // create nested array of snake segment locations
     let snake = [];
     for(i = 0; i < usedX.length; i++){
         let segment = [];
@@ -51,6 +52,7 @@ function food(){
         snake.push(segment);
     }
 
+    // generate random locations until it is not on snakes body
     let x = Math.floor((Math.random() * field.rows) + 1);
     let y = Math.floor((Math.random() * field.cols) + 1);
 
@@ -80,7 +82,7 @@ function food(){
         }
     }
 
-    
+    //return new location
     if (acceptValues = true){
         foodLoc = {x: x, y: y};
     }
@@ -349,6 +351,7 @@ function beginGame(){
     const restartBut = document.getElementById("restart");
     let endScreen = document.getElementById("endgame");
 
+    // End Screen that stops the interval
 function endGame(){
     frame = clearTimeout(frame);
 
@@ -382,7 +385,7 @@ function endGame(){
     button.onclick = resetGame;
 }
     
-
+    // Resets game 
 function resetGame(){
     clearTimeout(frame);
     endScreen.style.setProperty('display', 'none');
@@ -492,5 +495,3 @@ let frame;
 startBut.onclick = beginGame;
 pauseBut.onclick = pauseGame;
 resumeBut.onclick = continueGame;
-restartBut.onclick = resetGame;
-
