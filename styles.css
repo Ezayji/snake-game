@@ -98,12 +98,7 @@ p{
 }
 
 #score, #best{
-    height: 100px;
     width: 200px;
-    /*
-    color: black;
-    border: 5px solid black;
-    */
     background-color: #2d167e;
     border: 5px solid #4d1cfc;
     
@@ -119,15 +114,18 @@ p{
 }
 
 #score {
+    height: 100px;
     display: none;
 }
 
 /* top score */
 
-#best{ 
+#best{
+    height: 105px; 
     margin-bottom: 20px;
     display: none;
 }
+
 /* Creator name display */
 
 #creator{
@@ -158,15 +156,18 @@ p{
 
 /* Welcome Display */
 
-#welcome {
+#welcome{
+    background-color: #2d167e;
+}
+
+#welcome, #endgame {
     position: fixed;
     top: 50%;
     left: 50%;
     width: 300px;
     height: 400px;
-    background-color: #2d167e;
-    margin-left: -150px;
     margin-top: -200px;
+    margin-left: -150px;
     z-index: 4;
     display: flex;
     flex-direction: column;
@@ -182,20 +183,34 @@ p{
     line-height: 1.75;
 }
 
-#welcome button{
+#welcome button, #endgame button{
     margin-top: 30px;
     padding: 10px 0;
     font-family: 'Press Start 2P';
     width: 110px;
 }
 
-#welcome h1{
+#welcome h1, #endgame h1{
     font-size: 20px;
     font-family: 'Press Start 2P';
     font-weight: normal;
     margin: 0;
     margin-bottom: 30px;
 }
+
+/* ENDGAME display */
+
+#endgame{
+    z-index: 5;
+    display: none;
+    background-color: #090a0c
+}
+
+#endgame p{
+    line-height: 2.5;
+    font-size: 18px;
+}
+
 /* Snake */
 
 .snake {

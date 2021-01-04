@@ -277,12 +277,15 @@ function highScore(){
 
     let p = document.createElement('p');
     let p2 = document.createElement('p');
+    let p3 = document.createElement('p');
 
-    p.textContent = "High score:";
-    p2.textContent = `${high}`;
+    p.textContent = "Your High";
+    p2.textContent = "Score:"
+    p3.textContent = `${high}`;
 
     highScore.appendChild(p);
     highScore.appendChild(p2);
+    highScore.appendChild(p3);
 }
 
     // treats left table
@@ -343,8 +346,46 @@ function beginGame(){
 
 
 // END THE GAME IF LOSE
+    const restartBut = document.getElementById("restart");
+    let endScreen = document.getElementById("endgame");
+
 function endGame(){
+    frame = clearTimeout(frame);
+
+    endScreen.innerHTML = "";
+    endScreen.style.setProperty('display', 'flex');
+
+    let h = document.createElement('h1');
+    let p1 = document.createElement('p');
+    let p2 = document.createElement('p');
+    let p3 = document.createElement('p');
+    let p4 = document.createElement('p');
+    let button = document.createElement('button');
+    button.setAttribute('id', 'restart');
+    p2.style.setProperty('color', '#4d1cfc');
+    p4.style.setProperty('color', '#4d1cfc');
+
+    h.textContent = "Current Game Result";
+    p1.textContent = "Score:";
+    p2.textContent = `${score}`;
+    p3.textContent = "Level Reached:";
+    p4.textContent = `${level}`;
+    button.textContent = "Restart";
+    
+    endScreen.appendChild(h);
+    endScreen.appendChild(p1);
+    endScreen.appendChild(p2);
+    endScreen.appendChild(p3);
+    endScreen.appendChild(p4);
+    endScreen.appendChild(button);
+
+    button.onclick = resetGame;
+}
+    
+
+function resetGame(){
     clearTimeout(frame);
+    endScreen.style.setProperty('display', 'none');
     highScore();
     snakeLoc = [{x: 30, y: 13}];
     foodCounter = 0;
@@ -451,4 +492,5 @@ let frame;
 startBut.onclick = beginGame;
 pauseBut.onclick = pauseGame;
 resumeBut.onclick = continueGame;
+restartBut.onclick = resetGame;
 
