@@ -181,10 +181,11 @@ p{
 
 #welcome p{
     line-height: 1.75;
+    margin-bottom: 10px;
 }
 
 #welcome button{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 #welcome button, #endgame button{
@@ -193,15 +194,15 @@ p{
     width: 110px;
 }
 
-#welcome h1{
-    margin-bottom: 30px;
-}
-
 #welcome h1, #endgame h1{
     font-size: 20px;
     font-family: 'Press Start 2P';
     font-weight: normal;
     margin: 0;
+}
+
+#welcome h1{
+    margin-bottom: 20px;
 }
 
 /* ENDGAME display */

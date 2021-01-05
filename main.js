@@ -237,8 +237,7 @@ function showLevel(){
     p.textContent = `Level:${level}`;
     p2.textContent = `Score:${score}`;
 
-    box.appendChild(p);
-    box.appendChild(p2);
+    box.append(p, p2);
 }
 
     // increase speed and level after certain times the treat is eaten
@@ -285,9 +284,7 @@ function highScore(){
     p2.textContent = "Score:"
     p3.textContent = `${high}`;
 
-    highScore.appendChild(p);
-    highScore.appendChild(p2);
-    highScore.appendChild(p3);
+    highScore.append(p, p2, p3);
 }
 
     // treats left table
@@ -305,10 +302,7 @@ function treatsTable(){
     p3.textContent = "level up:";
     p4.textContent = `${treatsLeft}`;
 
-    box.appendChild(p);
-    box.appendChild(p2);
-    box.appendChild(p3);
-    box.appendChild(p4);
+    box.append(p, p2, p3, p4);
 }
 
 
@@ -357,6 +351,7 @@ function endGame(){
 
     endScreen.innerHTML = "";
     endScreen.style.setProperty('display', 'flex');
+    pauseBut.style.setProperty('display', 'none');
 
     let h = document.createElement('h1');
     let p1 = document.createElement('p');
@@ -374,13 +369,8 @@ function endGame(){
     p3.textContent = "Level Reached:";
     p4.textContent = `${level}`;
     button.textContent = "Restart";
-    
-    endScreen.appendChild(h);
-    endScreen.appendChild(p1);
-    endScreen.appendChild(p2);
-    endScreen.appendChild(p3);
-    endScreen.appendChild(p4);
-    endScreen.appendChild(button);
+
+    endScreen.append(h, p1, p2, p3, p4, button);
 
     button.onclick = resetGame;
 }
@@ -388,6 +378,7 @@ function endGame(){
     // Resets game 
 function resetGame(){
     clearTimeout(frame);
+    pauseBut.style.setProperty('display', 'initial');
     endScreen.style.setProperty('display', 'none');
     highScore();
     snakeLoc = [{x: 30, y: 13}];
