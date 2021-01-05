@@ -26,7 +26,9 @@ The project is created with:
 
 **The game heavily relies on CSS grids system.**<br/>
 **No third party libraries.**<br/>
-**No Canvas**
+**No Canvas**<br/>
+A weakpoint is that the JavaScript is all written in a single file.<br/> 
+*That could be improved but all functions have comments explaining the purpose and all of the code is broken down into sections.*
 ## Setup
 For local hosting:
 * Download the files
