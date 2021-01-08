@@ -336,6 +336,8 @@ function beginGame(){
     pauseBut.style.setProperty('display', 'initial');
     scoreBoard.style.setProperty('display', 'flex');
     foodBoard.style.setProperty('display', 'flex');
+        // listens for keypress
+    giveDirection();
     frame = setInterval(gameFrame, snakeSpeed);
 }
 
@@ -459,9 +461,6 @@ function gameFrame(){
 
         // checks if the snake tries to eat itself
     cannibalCheck();
-
-        // listens for keypress
-    giveDirection();
 
         // moves the snake relative to current given direction
     snakeDirection();
